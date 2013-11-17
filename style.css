@@ -1,0 +1,65 @@
+h1 {
+    font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+    text-align: center;
+}
+
+body.container {
+    width: 970px !important;
+}
+
+form {
+    margin-top: 4em;
+}
+
+.assignments {
+    margin-top: 3em;
+}
+
+.assignments p {
+    text-align: left;
+}
+
+.assignments table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2em;
+}
+
+.assignments th, td {
+    height: 1em;
+    padding: 1em;
+    border: 0.35em solid #ffffff;
+}
+
+.assignments th {
+    background-color: #f5f5f5;
+}
+
+.assignments th.blankcell {
+    background-color: #ffffff;
+}
+
+.assignments td {
+    text-align: center;
+}
+
+.assignments td:hover {
+    background-color: #f5f5f5;
+}
+
+.assignments td.taken {
+    background-color: #d0e9c6;
+}
+
+.assignments thead th {
+    text-align: center;
+}
+
+.assignments tbody th {
+    text-align: right;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 4em;
+}

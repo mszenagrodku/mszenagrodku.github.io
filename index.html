@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Msze na Gródku</title>
+        <meta name="description" content="Posługi podczas Mszy na Gródku">
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+        <script src="firebase.js"></script>
+        <script src="knockout-3.0.0.js"></script>
+        <script src="mng.js"></script>
+    </head>
+    <body class="container">
+        <h1>Msze na Gródku</h1>
+        <div class="alert alert-danger" data-bind="visible: errorGeneral">
+            <strong>Błąd aplikacji.</strong> Skontaktuj się z administratorem.
+        </div>
+        <div class="alert alert-danger" data-bind="visible: errorCredentials">
+            <strong>Niepoprawde hasło.</strong> Sprawdź nazwę użytkownika oraz hasło i spróbuj ponownie.
+        </div>        
+        <form class="form-horizontal" data-bind="visible: formVisible">
+            <div class="form-group" data-bind="css: { 'has-error': userError }">
+                <label for="user" class="col-xs-4 control-label">imię:</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" id="user" placeholder="imię" data-bind="value: user, valueUpdate: 'afterkeydown', hasFocus: focusUser">
+                </div>
+            </div>
+            <div class="form-group" data-bind="css: { 'has-error': passwordError }">
+                <label for="password" class="col-xs-4 control-label">hasło</label>
+                <div class="col-xs-4">
+                    <input type="text" class="form-control" id="password" placeholder="hasło" data-bind="value: password, valueUpdate: 'afterkeydown'">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-offset-4 col-xs-4">
+                    <button type="submit" class="btn btn-default" data-bind="click: $root.assign, visible: isAdding">dodaj</button>
+                    <button type="submit" class="btn btn-default" data-bind="click: $root.unassign, visible: isRemoving">usuń</button>
+                    <button type="button" class="btn btn-link" data-bind="click: $root.cancel">anuluj</button>
+                </div>
+            </div>
+        </form>
+        <div class="assignments" data-bind="visible: gridVisible">
+            <p>
+                <strong>Jak korzystać z formularza?</strong><br>
+                Wybierz posługę i datę z tabeli.
+                Kliknij odpowiednie pole, a następnie podaj swoje imię i stwórz hasło, by móc później zrezygnować z posługi.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="blankcell"></th>
+                        <!-- ko foreach: days -->
+                        <th data-bind="text: text"></th>
+                        <!-- /ko -->
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: ministries">
+                    <tr>
+                        <th data-bind="text: text"></th>
+                        <!-- ko foreach: assignments -->
+                        <td data-bind="text: user, css: { taken: taken }, click: $root.select"></td>
+                        <!-- /ko -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+            Kontakt: mszenagrodku@gmail.com
+        </div>
+        <script>mng.bind();</script>
+    </body>
+</html>
